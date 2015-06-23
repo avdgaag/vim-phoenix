@@ -1,0 +1,97 @@
+*phoenix.vim*		Plugin for working with the Phoenix framework
+
+Author: Arjan van der Gaag <http://arjanvandergaag.nl>
+License: Same terms as Vim itself (see |license|)
+
+This plugin is only available if 'compatible' is not set.
+
+=============================================================================
+INTRODUCTION                                     *phoenix* 
+
+This plugin helps you navigate and develop projects using the Phoenix web
+framework. A Phoenix project is detected by ascending up the directory
+hierarchy until both a `Mix.exs` file and `web` directory are found. When you
+edit a file in a Phoenix project, this plugin will be activated. This sets
+various options and defines some commands. It also integrates with other Vim
+plugins.
+
+=============================================================================
+NAVIGATION                                       *phoenix-navigation*
+
+Navigating a phoenix project's many files is what this project is mostly about.
+You should first and foremost try to use Vim's own navigation features to get
+around your project. To that end, this plugin will tweak a few settings.
+
+First, all common Phoenix code locations are prepended to 'path', enabling you
+to use |:find|:
+>
+	:find page_controller.ex
+<
+Second, 'suffixesadd' has common Elixir file extensions prependend to it,
+allowing you to use |:find| and |gf| to jump to files.
+
+=============================================================================
+COMMANDS                                         *phoenix-commands*
+
+:Mix [subcommand]		Invoke Mix with the given subcommand.
+
+=============================================================================
+INTEGRATIONS                                     *phoenix-integrations*
+
+                                                 *phoenix-projections*
+The |projections| plugin can be used to define navigation commands. This
+plugin provides several projections based on Phoenix project layout conventions.
+These include:
+
+:Echannel [name]	Edit a file in {web/channels}
+
+:Econtroller [name]	Edit a file in {web/controllers}
+
+:Eview [name]		Edit a file in {web/views}
+
+:Emodel [name]		Edit a file in {web/models}
+
+:Etemplate [name]	Edit a file in {web/templates}
+
+:Erouter		Edit {web/router.ex}
+
+:Estylesheet [name]	Edit a file in {web/static/css}
+
+:Ejavascript [name]	Edit a file in {web/static/js}
+
+:Econfig [name]		Edit a file in {config/}
+
+:Elib [name]		Edit a file in {lib/}
+
+:Emigration [name]	Edit a file in {priv/repo/mgirations}
+
+                                                 *phoenix-snippets*
+The |UltiSnips| plugin can help you to quickly inserts commonly used snippets
+of code. This plugin adds several Phoenix and Elixir-related snippets, that
+will automatically become available in phoenix projects.
+
+See {ultisnips/elixir.snippets} to see what's available.
+
+                                                 *phoenix-surround*
+The |surround| plugin allows adding and removing "surrounding" characters,
+such as parantheses, quotes and HTML tags. This plugin provides a few helpful
+additional surroundings that come in handy when editing `.eex` files:
+
+Key	Surrounding ~
+=	<%= ^ %>
+-	<% ^ %>
+#	<%# ^ %>
+<C-E>	<% ^ %>\n<% end -%>
+
+=============================================================================
+ABOUT                                            *phoenix-about*
+
+To find our more about the Phoenix framework, see:
+
+https://github.com/phoenixframework/phoenix
+
+To get the latest updates or report bugs, see this plugin's Github repository:
+
+https://github.com/avdgaag/vim-phoenix
+
+ vim:tw=78:ts=8:ft=help:norl:

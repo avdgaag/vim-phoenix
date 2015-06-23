@@ -1,0 +1,59 @@
+extends elixir
+
+snippet pipe "pipeline" wb
+pipeline :${1:browser} do
+	$0
+end
+endsnippet
+
+snippet pipe "pipe_through" wb
+pipe_through :${1:browser}
+endsnippet
+
+snippet get "GET route" wb
+get "${1:/}", ${2:Project}Controller, :${3:index}
+endsnippet
+
+snippet post "POST route" wb
+post "${1:/}", ${2:Project}Controller, :${3:create}
+endsnippet
+
+snippet put "PUT route" wb
+put "${1:/}", ${2:Project}Controller, :${3:update}
+endsnippet
+
+snippet delete "DELETE route" wb
+delete "${1:/}", ${2:Project}Controller, :${3:destroy}
+endsnippet
+
+snippet res "resources route" wb
+resources "/${1:projects}", ${2:Project}Controller
+endsnippet
+
+snippet res "resource route" wb
+resource "/${1:project}", ${2:Project}Controller
+endsnippet
+
+snippet scope "routing scope" wb
+scope "${1:/}", ${2:MyApp} do
+	$0
+end
+endsnippet
+
+snippet socket "socket route" wb
+socket "/${1:ws}", ${2:MyApp} do
+	$0
+end
+endsnippet
+
+snippet channel "socket channel route" wb
+channel "${1:notifications}", ${2:Notification}Channel
+endsnippet
+
+snippet redirect "redirect(conn, to: ...)" b
+redirect(${1:${2:conn}, }to: ${3:${4:project}_path(${5:conn}, :${6:index})})
+endsnippet
+
+snippet render "render(conn, view, assigns)" b
+render(${1:${2:conn}, }, "${3:view}"${4:, $5})
+endsnippet
