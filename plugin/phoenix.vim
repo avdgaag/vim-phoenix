@@ -55,7 +55,7 @@ let s:projections = {
   \ "test/models/*_test.exs": {
   \   "alternate": "web/models/{}.ex"
   \ },
-  \ "web/templates/*.html.exs": {
+  \ "web/templates/*.html.eex": {
   \   "type": "template"
   \ },
   \ "web/router.ex": {
