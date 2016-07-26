@@ -45,6 +45,7 @@ endfunction
 " This function handles inserting our projections for buffers in a Phoenix
 " project.
 function! phoenix#ProjectionistDetect(projections) abort
+  call s:Detect(getcwd())
   if exists('b:phoenix_root')
     call projectionist#append(b:phoenix_root, a:projections)
   endif
