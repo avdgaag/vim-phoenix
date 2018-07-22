@@ -10,24 +10,35 @@ function! s:shellslash(path) abort
   endif
 endfunction
 
+function! s:find_project(root) abort
+  for lib_dir in split(globpath(a:root, '/lib/*/'), '\n')
+    if lib_dir =~ '_web\/$'
+      return lib_dir[len(a:root)+6:-6]
+    end
+  endfor
+  return ''
+endfunction
+
 function! s:find_root(path) abort
   let root = s:shellslash(simplify(fnamemodify(a:path, ':p:s?[\/]$??')))
   let previous = ''
   while root !=# previous && root !=# '/'
-    if filereadable(root . '/mix.exs') && isdirectory(root . '/web')
-      return root
+    let project = s:find_project(root)
+    if filereadable(root . '/mix.exs') && project !=# ''
+      return [root, project]
     end
     let previous = root
     let root = fnamemodify(root, ':h')
   endwhile
-  return ''
+  return []
 endfunction
 
 function! s:Detect(path) abort
   if !exists('b:phoenix_root')
-    let dir = s:find_root(a:path)
-    if dir !=# ''
-      let b:phoenix_root = dir
+    let root = s:find_root(a:path)
+    if root !=# []
+      let b:phoenix_root = root[0]
+      let b:phoenix_project = root[1]
     endif
   endif
 endfunction
@@ -46,7 +57,8 @@ endfunction
 " project.
 function! phoenix#ProjectionistDetect(projections) abort
   if exists('b:phoenix_root')
-    call projectionist#append(b:phoenix_root, a:projections)
+    let projections = json_decode(substitute(json_encode(a:projections), '<project>', b:phoenix_project, 'g'))
+    call projectionist#append(b:phoenix_root, projections)
   endif
 endfunction
 

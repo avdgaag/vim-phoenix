@@ -27,44 +27,44 @@ augroup phoenix
 augroup end
 
 let s:projections = {
-  \ "web/channels/*_channel.ex": {
+  \ "lib/<project>_web/channels/*_channel.ex": {
   \   "type": "channel",
-  \   "alternate": "test/channels/{}_channel_test.exs"
+  \   "alternate": "test/<project>_web/channels/{}_channel_test.exs"
   \ },
-  \ "web/controllers/*_controller.ex": {
+  \ "lib/<project>_web/controllers/*_controller.ex": {
   \   "type": "controller",
-  \   "alternate": "test/controllers/{}_controller_test.exs"
+  \   "alternate": "test/<project>_web/controllers/{}_controller_test.exs"
   \ },
-  \ "web/views/*_view.ex": {
+  \ "lib/<project>_web/views/*_view.ex": {
   \   "type": "view",
-  \   "alternate": "test/views/{}_view_test.exs"
+  \   "alternate": "test/<project>_web/views/{}_view_test.exs"
   \ },
-  \ "web/models/*.ex": {
+  \ "lib/<project>_web/models/*.ex": {
   \   "type": "model",
-  \   "alternate": "test/models/{}_test.exs"
+  \   "alternate": "test/<project>_web/models/{}_test.exs"
   \ },
-  \ "test/channels/*_channel_test.exs": {
-  \   "alternate": "web/channels/{}_channel.ex"
+  \ "test/<project>_web/channels/*_channel_test.exs": {
+  \   "alternate": "lib/<project>_web/channels/{}_channel.ex"
   \ },
-  \ "test/controllers/*_controller_test.exs": {
-  \   "alternate": "web/controllers/{}_controller.ex"
+  \ "test/<project>_web/controllers/*_controller_test.exs": {
+  \   "alternate": "lib/<project>_web/controllers/{}_controller.ex"
   \ },
-  \ "test/views/*_view_test.exs": {
-  \   "alternate": "web/views/{}_view.ex"
+  \ "test/<project>_web/views/*_view_test.exs": {
+  \   "alternate": "lib/<project>_web/views/{}_view.ex"
   \ },
-  \ "test/models/*_test.exs": {
-  \   "alternate": "web/models/{}.ex"
+  \ "test/<project>_web/models/*_test.exs": {
+  \   "alternate": "lib/<project>_web/models/{}.ex"
   \ },
-  \ "web/templates/*.html.exs": {
+  \ "lib/<project>_web/templates/*.html.exs": {
   \   "type": "template"
   \ },
-  \ "web/router.ex": {
+  \ "lib/<project>_web/router.ex": {
   \   "type": "router"
   \ },
-  \ "web/static/css/*": {
+  \ "assets/css/*": {
   \   "type": "stylesheet"
   \ },
-  \ "web/static/js/*": {
+  \ "assets/js/*": {
   \   "type": "javascript"
   \ },
   \ "config/*.exs": {
@@ -89,6 +89,6 @@ augroup phoenix_path
   autocmd User Phoenix call phoenix#DefineMixCommand()
   autocmd User Phoenix call phoenix#SetupSurround()
   autocmd User Phoenix
-        \ let &l:path = 'lib/**,web/**,test/**,config/**' . &path |
+        \ let &l:path = 'lib/**,test/**,config/**,assets/**' . &path |
         \ let &l:suffixesadd = '.ex,.exs,.html.eex' . &suffixesadd
 augroup END
